@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Tools</title>
+</head>
+	<body>
+		<br>
+		<input type="text" id="inputVal" style="width:35%;height:30px;font-size:16px;"><br><br>
+		
+		<input type="button" value="hex2dec" id="hex2dec">
+		<input type="text" id="decVal" disabled style="border-style:none;width:100%;height:30px;font-size:16px;"></input><br>
+		
+		<input type="button" value="dec2hex" id="dec2hex">
+		<input type="text" id="hexVal" disabled style="border-style:none;width:100%;height:30px;font-size:16px;"></input><br>
+	</body>
+	
+	<script>
+		var textIpt = document.getElementById("inputVal");
+		
+		var hex2decBtn = document.getElementById("hex2dec");
+		var decValIpt = document.getElementById("decVal");
+		
+		var dec2hexBtn = document.getElementById("dec2hex");
+		var hexValIpt = document.getElementById("hexVal");
+		
+	
+		hex2decBtn.onclick = function() {
+			var text = textIpt.value;
+			if (! text) { decValIpt.value = 'Please input a value in hexadecimal'; return; }
+			if (! /^[A-Fa-f0-9]+$/.test(text)) { decValIpt.value = 'Invalid input'; return; }
+			
+			decValIpt.value = BigInt(`0x${text}`).toString(10);
+		}
+		
+		dec2hexBtn.onclick = function() {
+			var text = textIpt.value;
+			if (! text) { hexValIpt.value = 'Please input a value in decimal'; return; }
+			if (! /^[0-9]+$/.test(text)) { hexValIpt.value = 'Invalid input'; return; }
+			
+			hexValIpt.value = BigInt(text).toString(16);
+		}
+	</script>
+</html>
